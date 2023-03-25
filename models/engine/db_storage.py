@@ -26,7 +26,7 @@ class DBStorage:
         "State": State,
         "City": City,
         "Amenity": Amenity,
-        "Place": Place,
+        #"Place": Place,
         "Review": Review
     }
 

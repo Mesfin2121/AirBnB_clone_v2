@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""This is the base model class for AirBnB"""
+"""This module defines a base class for all models in our hbnb clone"""
 import uuid
-import models
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, String, DateTime
+
 Base = declarative_base()
 
 
@@ -32,21 +32,13 @@ class BaseModel:
                 setattr(self, "id", str(uuid.uuid4()))
 
     def __str__(self):
-        """returns a string
-        Return:
-            returns a string of class name, id, and dictionary
-        """
-        return "[{}] ({}) {}".format(
-            type(self).__name__, self.id, self.__dict__)
-
-    def __repr__(self):
-        """return a string representaion
-        """
-        return self.__str__()
+        """Returns a string representation of the instance"""
+        cls = (str(type(self)).split('.')[-1]).split('\'')[0]
+        return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
 
     def save(self):
-        """updates the public instance attribute updated_at to current
-        """
+        """Updates updated_at with current time when instance is changed"""
+        from models import storage
         self.updated_at = datetime.now()
         storage.new(self)
         storage.save()
