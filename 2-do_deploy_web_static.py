@@ -4,7 +4,7 @@
 
 from fabric.api import put, run, env
 from os.path import exists
-env.hosts = ['web-01.coding-max.tech', 'web-02.coding-max.tech']
+env.hosts = ['web-01.mesfin2121.tech', 'web-02.mesfin2121.tech']
 
 
 def do_deploy(archive_path):
